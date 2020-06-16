@@ -27,7 +27,7 @@
 		E88F10E62495DF320054DA53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E88F10E82495DF320054DA53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E88F10EE2496EF280054DA53 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
-		E88F10F0249717AC0054DA53 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		E88F10F0249717AC0054DA53 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Task.swift; path = ../Task.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,8 +44,6 @@
 		E88F10CE2495DF300054DA53 = {
 			isa = PBXGroup;
 			children = (
-				E88F10F0249717AC0054DA53 /* Task.swift */,
-				E88F10EE2496EF280054DA53 /* InputViewController.swift */,
 				E88F10D92495DF300054DA53 /* taskapp */,
 				E88F10D82495DF300054DA53 /* Products */,
 			);
@@ -62,6 +60,8 @@
 		E88F10D92495DF300054DA53 /* taskapp */ = {
 			isa = PBXGroup;
 			children = (
+				E88F10F0249717AC0054DA53 /* Task.swift */,
+				E88F10EE2496EF280054DA53 /* InputViewController.swift */,
 				E88F10DA2495DF300054DA53 /* AppDelegate.swift */,
 				E88F10DC2495DF300054DA53 /* SceneDelegate.swift */,
 				E88F10DE2495DF300054DA53 /* ViewController.swift */,
