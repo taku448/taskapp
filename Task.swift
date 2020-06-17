@@ -2,13 +2,13 @@ import RealmSwift
 
 class Task: Object {
     
-    @obj dynamic var id = 0
+    @objc dynamic var id = 0
     
-    @pbj dynamic var titme = ""
+    @objc dynamic var titme = ""
     
-    @obj dynamic var contents = ""
+    @objc dynamic var contents = ""
     
-    @obj dynamic var date = Date()
+    @objc dynamic var date = Date()
     
     override static func primaryKey() -> String? {
         return "id"

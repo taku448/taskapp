@@ -97,7 +97,7 @@
                                     <constraint firstAttribute="height" constant="120" id="9ed-we-ILG"/>
                                 </constraints>
                             </datePicker>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7QW-cr-WAE">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7QW-cr-WAE" userLabel="Contens Text View">
                                 <rect key="frame" x="10" y="204" width="394" height="120"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -136,7 +136,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="erH-ub-CDP"/>
                     <connections>
-                        <outlet property="containsTextView" destination="7QW-cr-WAE" id="hys-wV-l1g"/>
+                        <outlet property="contentsTextView" destination="7QW-cr-WAE" id="WZc-c9-aps"/>
                         <outlet property="datePicker" destination="plv-gq-VN4" id="Og7-Qr-mu2"/>
                         <outlet property="titleTextField" destination="57Z-G6-ECa" id="I1h-LI-tpK"/>
                     </connections>

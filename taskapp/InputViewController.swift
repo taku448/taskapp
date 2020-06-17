@@ -13,19 +13,22 @@ import UserNotifications
 class InputViewController: UIViewController {
     
     let realm = try! Realm()
-    var task: Task!
+    
     
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var containsTextView: UITextView!
+    @IBOutlet weak var contentsTextView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
+    
+    var task: Task!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(dismissKeyboard))
         
         titleTextField.text = task.title
+    
         contentsTextView.text = task.contents
         datePicker.date = task.date
         
@@ -34,21 +37,22 @@ class InputViewController: UIViewController {
     try! realm.write{
         self.task.title = self.titleTextField.test!
         self.task.contents = self.contentsTextView.text
-        self.task.date = self.datePicker.dateself.realm.add(self.task, update: .modified)
+        self.task.date = self.datePicker.date
+        self.realm.add(self.task, update: .modified)
     }
-        setNortification(task: task)
+        setNotification(task: task)
     super.viewWillDisappear(animated)
         
     }
     
-    func setNortification(task: task){
+    func setNotification(task: Task){
         let content = UNMutableNotificationContent()
         if task.title == ""{
             content.title = "（タイトルなし）"
         }else{
             content.title - task.title
         }
-        if task.cntents == ""{
+        if task.contents == ""{
             content.body = "（内容なし）"
         }else{
             content.body = task.contents
@@ -57,11 +61,12 @@ class InputViewController: UIViewController {
         
         let calendar = Calendar.current
         let dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: task.date)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeates: false)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         let request = UNNotificationRequest(identifier: String(task.id), content: content, trigger:trigger)
-        let center = UNNotificationCenter.current()
-        center.add(request){ (error) in
-            print(error ?? "ローカル通知登録　OK")
+       let center = UNUserNotificationCenter.current()
+        center.add(request) { (error) in
+            print(error ?? "ローカル通知登録 OK")
+            
         }
         center.getPendingNotificationRequests{ (requests: [UNNotificationRequest]) in
             for request in requests {
@@ -73,7 +78,7 @@ class InputViewController: UIViewController {
         }
 
     
-    @obj func dismissKeyboard(){
+    @objc func dismissKeyboard(){
         view.endEditing(true)
     }
     
