@@ -16,6 +16,7 @@ class InputViewController: UIViewController {
     
     
     @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var contentsTextView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
     
@@ -26,16 +27,18 @@ class InputViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
         
         titleTextField.text = task.title
-    
+        categoryTextField.text = task.category
         contentsTextView.text = task.contents
         datePicker.date = task.date
         
     }
     override func viewWillDisappear(_ animated: Bool){
     try! realm.write{
-        self.task.title = self.titleTextField.test!
+        self.task.title = self.titleTextField.text!
+        self.task.category = self.categoryTextField.text!
         self.task.contents = self.contentsTextView.text
         self.task.date = self.datePicker.date
         self.realm.add(self.task, update: .modified)
@@ -46,12 +49,14 @@ class InputViewController: UIViewController {
     }
     
     func setNotification(task: Task){
-        let content = UNMutableNotificationContent()
+        let content =
+            UNMutableNotificationContent()
         if task.title == ""{
             content.title = "（タイトルなし）"
         }else{
-            content.title - task.title
+            content.title = task.title
         }
+        
         if task.contents == ""{
             content.body = "（内容なし）"
         }else{

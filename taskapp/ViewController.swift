@@ -11,15 +11,17 @@ import RealmSwift
 import UserNotifications
 
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate  {
 
     
+    @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
     let realm = try! Realm()
     
-    var taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: true)
+    var taskArray = try! Realm().objects(Task.self).filter("category = 'aaa'")
     
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -37,12 +39,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let task = taskArray[indexPath.row]
         cell.textLabel?.text = task.title
         
-        
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
         
         let dateString:String = formatter.string(from: task.date)
         cell.detailTextLabel?.text = dateString
+        cell.detailTextLabel?.text = task.category + " " + dateString
         
         return cell
         

@@ -10,14 +10,14 @@ import UIKit
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let center = UNUserNtificationCenter.current()
+        let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .sound]){(granted, error) in
             
         }
@@ -25,8 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func userNotifocationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completinHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alart, .sound])
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    completionHandler([.alert, .sound])
+        
     }
     // MARK: UISceneSession Lifecycle
 
