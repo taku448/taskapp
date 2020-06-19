@@ -59,6 +59,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
@@ -85,10 +86,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     func textFieldShouldReturn(_ textField:UITextField) -> Bool {
         
-     let predicate = NSPredicate(format: "category = %@" , filterTextField.text!)
-      taskArray = realm.objects(Task.self).filter(predicate)
-     
-      self.view.endEditing(true)
+
+        let predicate = NSPredicate(format: "category = %@" , filterTextField.text!)
+        
+        if filterTextField.text == "" {
+            
+            taskArray = realm.objects(Task.self).sorted(byKeyPath: "date")
+            tableView.reloadData()
+            
+        }else {
+              taskArray = realm.objects(Task.self).filter(predicate)
+              tableView.reloadData()
+        }
+            self.view.endEditing(true)
+        
+        
      
       return true
     }
