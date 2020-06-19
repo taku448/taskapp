@@ -11,15 +11,15 @@ import RealmSwift
 import UserNotifications
 
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate  {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate  {
 
     
-    @IBOutlet weak var categoryTextField: UITextField!
+    @IBOutlet weak var filterTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
     let realm = try! Realm()
     
-    var taskArray = try! Realm().objects(Task.self).filter("category = 'aaa'")
+        var taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: true)
     
         
     override func viewDidLoad() {
@@ -28,8 +28,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         tableView.delegate = self
         tableView.dataSource = self
+        filterTextField.delegate = self
+        
         
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskArray.count
     }
@@ -80,6 +83,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             }
         }
+    func textFieldShouldReturn(_ textField:UITextField) -> Bool {
+        
+     let predicate = NSPredicate(format: "category = %@" , filterTextField.text!)
+      taskArray = realm.objects(Task.self).filter(predicate)
+     
+      self.view.endEditing(true)
+     
+      return true
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

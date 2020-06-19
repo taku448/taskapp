@@ -69,7 +69,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="categoryTextField" destination="hBp-Jm-pWD" id="Hvg-ST-0ld"/>
+                        <outlet property="filterTextField" destination="hBp-Jm-pWD" id="zMN-PN-HEc"/>
                         <outlet property="tableView" destination="hfq-O2-Sho" id="YXT-di-h6W"/>
                         <segue destination="EBv-Rh-gk0" kind="show" identifier="cellSegue" id="u9I-6z-Tag"/>
                     </connections>
